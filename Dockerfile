@@ -48,6 +48,7 @@ COPY config/ ./config/
 COPY docs/ ./docs/
 COPY scripts/ ./scripts/
 COPY test/ ./test/
+COPY mocks/ ./mocks/
 
 # Create required runtime & config directories (before ownership change)
 RUN mkdir -p \

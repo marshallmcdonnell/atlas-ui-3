@@ -1,5 +1,5 @@
 {
-  "lakehouse": {
+  "datapond": {
     "command": [
       "uvx",
       "awslabs.aws-dataprocessing-mcp-server@latest",
@@ -10,11 +10,11 @@
     "cwd": "backend",
     "env": {
       "AWS_REGION": "us-east-1",
-      "AWS_ACCESS_KEY_ID": "aws_access_key_id",
-      "AWS_SECRET_ACCESS_KEY": "aws_secret_access_key"
+      "AWS_ACCESS_KEY_ID": "access_key",
+      "AWS_SECRET_ACCESS_KEY": "secret_key"
     }
   },
-  "catalog": {
+  "datacatalog": {
     "command": [
       "uvx",
       "mcp-server-openmetadata"
@@ -22,7 +22,7 @@
     "groups": ["users"],
     "cwd": "backend",
     "env": {
-      "OPENMETADATA_HOST": "https://openmetadata.american-science-cloud.org/api",
+      "OPENMETADATA_HOST": "openmetadata_host",
       "OPENMETADATA_JWT_TOKEN": "jwt_token"
     }
   },
