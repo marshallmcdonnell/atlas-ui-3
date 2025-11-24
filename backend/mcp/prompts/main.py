@@ -22,7 +22,6 @@ def data_lakehouse() -> PromptMessage:
     - Use calls to Glue to find out about lakehouse tables.
     - Use the primary Athena workgroup for queries."""
 
-
     return PromptMessage(
         role="user",
         content=TextContent(
