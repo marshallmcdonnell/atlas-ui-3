@@ -9,6 +9,7 @@ brokers:
     port: port
     protocol: mqtt3.1.1
 
+
 # Hierarchy for this adapter.
 # Currently set the same as the September 2025 demo.
 hierarchy_ros:
