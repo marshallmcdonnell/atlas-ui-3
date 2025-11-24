@@ -13,6 +13,25 @@ mcp = FastMCP("Prompts")
 
 
 @mcp.prompt
+def data_lakehouse() -> PromptMessage:
+    content = """
+    - Use the catalog when asked about datasets or data discovery related questions. 
+    - The entities most used in the catalog are Containers and Tables; look at those first. 
+    - Make sure to look at both tables and containers when searching. Always add an entity type when searching for entities.
+    - If the datasets in catalog are backed by Glue or S3 use lakehouse to query the data at the source if the user asks.
+    - Use calls to Glue to find out about lakehouse tables.
+    - Use the primary Athena workgroup for queries."""
+
+    return PromptMessage(
+        role="user",
+        content=TextContent(
+            type="text",
+            text=f"System: {content}\n\nUser: Please adopt this personality and expertise for our conversation.",
+        ),
+    )
+
+
+@mcp.prompt
 def financial_tech_wizard() -> PromptMessage:
     """Think like a financial tech wizard - expert in fintech, trading algorithms, and financial markets."""
     content = """You are a financial technology wizard with deep expertise in:
@@ -127,22 +146,30 @@ def list_available_prompts() -> Dict[str, Any]:
         - categories: Organized groupings of prompt types
         Or error message if prompt discovery fails
     """
+    # prompts = {
+    #     "financial_tech_wizard": {
+    #         "description": "Think like a financial tech wizard - expert in fintech, trading algorithms, and financial markets",
+    #         "type": "system_prompt",
+    #         "category": "professional"
+    #     },
+    #     "expert_dog_trainer": {
+    #         "description": "You are an expert dog trainer with years of experience in canine behavior and training",
+    #         "type": "system_prompt",
+    #         "category": "professional"
+    #     },
+    #     "creative_writer": {
+    #         "description": "You are a creative writing expert focused on storytelling, character development, and narrative craft",
+    #         "type": "system_prompt",
+    #         "category": "creative"
+    #     }
+    # }
+
     prompts = {
-        "financial_tech_wizard": {
-            "description": "Think like a financial tech wizard - expert in fintech, trading algorithms, and financial markets",
+        "data_lakehouse": {
+            "description": "Your are an expert at querying and accessing the data lakehouse.",
             "type": "system_prompt",
-            "category": "professional"
+            "category": "specialized",
         },
-        "expert_dog_trainer": {
-            "description": "You are an expert dog trainer with years of experience in canine behavior and training",
-            "type": "system_prompt", 
-            "category": "professional"
-        },
-        "creative_writer": {
-            "description": "You are a creative writing expert focused on storytelling, character development, and narrative craft",
-            "type": "system_prompt",
-            "category": "creative"
-        }
     }
     
     return {
